@@ -1,0 +1,43 @@
+{
+    "project": {
+      "name": "Tee Time Grabber",
+      "public": true,
+      "description": "A React+TypeScript+Tailwind web app (zero‑cost backend via GitHub Actions) that aggregates golf tee times. Monetized via Stripe subscriptions. Security and code quality are top priorities."
+    },
+    "stack": {
+      "frontend": ["React", "TypeScript", "TailwindCSS"],
+      "backend": ["GitHub Actions (Python scraper)", "Stripe", "Supabase Auth & DB"],
+      "ci": ["GitHub Actions: lint, test, build"],
+      "hosting": ["GitHub Pages", "Netlify/Vercel functions"]
+    },
+    "env": {
+      "required": [
+        "REACT_APP_STRIPE_PUBLISHABLE_KEY",
+        "REACT_APP_API_URL",
+        "REACT_APP_SUPABASE_URL",
+        "REACT_APP_SUPABASE_KEY"
+      ],
+      "secretsPolicy": "All secrets live only in `.env*` or CI settings—never in source.",
+      "exampleFile": ".env.example"
+    },
+    "security": {
+      "typescript": { "strict": true, "noImplicitAny": true },
+      "lint": { "eslint": true, "prettier": true, "husky": true },
+      "headers": ["CSP", "X-Frame-Options", "XSS-Protection"],
+      "httpsOnly": true,
+      "inputValidation": "All form and API inputs must use Yup schemas",
+      "auth": "All premium routes gated by JWT check",
+      "webhooks": "Validate Stripe signatures; idempotent handlers"
+    },
+    "testing": {
+      "unit": "Jest + React Testing Library stubs for every component",
+      "coverage": ">= 80%",
+      "e2e": "Optional: Cypress skeleton"
+    },
+    "deployment": {
+      "pages": "gh-pages or main branch → GitHub Pages",
+      "functions": "Netlify/Vercel serverless",
+      "cron": "GitHub Actions scheduled scraper"
+    }
+  }
+  

@@ -4,8 +4,6 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
 // Components
-import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
 
 // Pages
@@ -22,18 +20,12 @@ const App: React.FC = () => {
     <Router>
       <ErrorBoundary>
         <Elements stripe={stripePromise}>
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-grow">
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/pro" element={<ProPage />} />
-                <Route path="/checkout/success" element={<SuccessPage />} />
-                <Route path="/checkout/cancel" element={<CancelPage />} />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/pro" element={<ProPage />} />
+            <Route path="/checkout/success" element={<SuccessPage />} />
+            <Route path="/checkout/cancel" element={<CancelPage />} />
+          </Routes>
         </Elements>
       </ErrorBoundary>
     </Router>
